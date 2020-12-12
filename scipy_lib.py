@@ -1,5 +1,6 @@
 from scipy import constants
 import numpy as np
+from scipy.sparse.csgraph import dijkstra
 from scipy.sparse import csr_matrix
 
 print("1 year =",constants.year,"s")#Return in Seconds
@@ -18,3 +19,12 @@ print()
 print("Non - Zero Data:",csr_matrix(arr).data)
 print()
 print("Total Non - Zero Data:",csr_matrix(arr).count_nonzero())
+arr2 = np.array([
+  [0, 1, 2],
+  [1, 0, 0],
+  [2, 0, 0]
+])
+
+newarr = csr_matrix(arr2)
+print()
+print(dijkstra(newarr, return_predecessors=True, indices=0))
