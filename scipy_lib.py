@@ -1,5 +1,6 @@
 from scipy import constants
 import numpy as np
+from scipy.sparse.csgraph import depth_first_order
 from scipy.sparse.csgraph import dijkstra
 from scipy.sparse import csr_matrix
 
@@ -25,6 +26,16 @@ arr2 = np.array([
   [2, 0, 0]
 ])
 
+gp = np.array([
+  [0, 1, 0, 1],
+  [1, 1, 1, 1],
+  [2, 1, 1, 0],
+  [0, 1, 0, 1]
+])
+
 newarr = csr_matrix(arr2)
+gpcsr = csr_matrix(gp)
 print()
 print(dijkstra(newarr, return_predecessors=True, indices=0))
+print()
+print(depth_first_order(gpcsr, 3))
